@@ -28,7 +28,7 @@ def get_wall_posts(owner_id, access_token, count=100):
             post_info = {
                 'id': post['id'],
                 'date': datetime.fromtimestamp(post['date']).strftime('%Y-%m-%d %H:%M:%S'),
-                'text': post['text'][:100] + '...' if len(post['text']) > 100 else post['text'],
+                # 'text': post['text'][:100] + '...' if len(post['text']) > 100 else post['text'],
                 'likes': post['likes']['count'],
                 'comments': post['comments']['count'],
                 'reposts': post['reposts']['count'],
@@ -43,7 +43,7 @@ def get_wall_posts(owner_id, access_token, count=100):
 
 
 owner_id = 292394399  # ID пользователя
-access_token = ""
+access_token = os.getenv("VK_TOKEN")
 
 posts = get_wall_posts(owner_id, access_token)
 
