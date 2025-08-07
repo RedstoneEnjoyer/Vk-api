@@ -1,8 +1,11 @@
 import json
+import os
+import sqlite3
+import time
 from datetime import datetime
 
+import pandas as pd
 import requests
-import time
 
 # Лимит на число выгруженных строк
 LIMIT = 10000
@@ -70,9 +73,7 @@ def get_wall_posts(owner_id, access_token, count=100, max_posts=None):
     
     return all_posts
 
-import os
 
-import pandas as pd
 
 owner_id = 'hnnnnnnnnnnnnnnnn'  # id пользователя/группы
 access_token = os.getenv("VK_TOKEN")
@@ -83,8 +84,6 @@ posts = get_wall_posts(owner_id, access_token)
 df = pd.DataFrame(posts)
 df.to_csv('data/posts.csv', index=False, encoding='utf-8')
 
-
-import sqlite3
 
 
 conn = sqlite3.connect('sqlite/default.db')
